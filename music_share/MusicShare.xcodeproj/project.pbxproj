@@ -19,6 +19,7 @@
 		A4EC247CAD2BEE59A6D5ADBA /* MusicPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B137C4D672285FC64941828 /* MusicPlatform.swift */; };
 		AD56E68C292E921953A65731 /* MusicPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B137C4D672285FC64941828 /* MusicPlatform.swift */; };
 		DDB832581FF01F8A3E96CB4F /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90080C933BDA1FBAC3A98872 /* ColorExtension.swift */; };
+		E9CC4654902C6370C1D3E9BF /* ShareViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8668C25B94B44610B271CB24 /* ShareViewModel.swift */; };
 		F368D31747CD2D6BE473ED8F /* MusicShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D0B93FC6E2B8DB7EB68A7A /* MusicShareApp.swift */; };
 		F5277D23AC1331FECE1B85F3 /* MusicLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */; };
 		F7072A7325DC6D64A18EB45B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20B6BC6E5CE898021CD0FCA /* ShareViewController.swift */; };
@@ -52,6 +53,7 @@
 		0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLink.swift; sourceTree = "<group>"; };
 		6431AD8A1AA7BD2F4BDDA7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		68D0B93FC6E2B8DB7EB68A7A /* MusicShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicShareApp.swift; sourceTree = "<group>"; };
+		8668C25B94B44610B271CB24 /* ShareViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewModel.swift; sourceTree = "<group>"; };
 		8B137C4D672285FC64941828 /* MusicPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlatform.swift; sourceTree = "<group>"; };
 		90080C933BDA1FBAC3A98872 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
 		A6395E2122084CA639507673 /* MusicLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLinkService.swift; sourceTree = "<group>"; };
@@ -91,6 +93,7 @@
 				D6F7660AE239A45757789C8D /* ShareExtension.entitlements */,
 				CC328B95091E483593E5FC42 /* ShareView.swift */,
 				E20B6BC6E5CE898021CD0FCA /* ShareViewController.swift */,
+				8668C25B94B44610B271CB24 /* ShareViewModel.swift */,
 			);
 			path = ShareExtension;
 			sourceTree = "<group>";
@@ -273,6 +276,7 @@
 				A4EC247CAD2BEE59A6D5ADBA /* MusicPlatform.swift in Sources */,
 				5C2BDFB4F2B8E03428D01E58 /* ShareView.swift in Sources */,
 				F7072A7325DC6D64A18EB45B /* ShareViewController.swift in Sources */,
+				E9CC4654902C6370C1D3E9BF /* ShareViewModel.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
