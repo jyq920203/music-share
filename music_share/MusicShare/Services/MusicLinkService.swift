@@ -363,13 +363,20 @@ final class MusicLinkService {
     }
 
     private func extractQQSongID(from url: URL) -> String? {
-        let components = url.pathComponents
-        if let last = components.last, last.allSatisfy({ $0.isNumber }), !last.isEmpty {
+        if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+           let queryItems = components.queryItems,
+           let songId = queryItems.first(where: { $0.name == "songid" })?.value,
+           !songId.isEmpty {
+            return songId
+        }
+
+        let pathComponents = url.pathComponents
+        if let last = pathComponents.last, last.allSatisfy({ $0.isNumber }), !last.isEmpty {
             return last
         }
-        if let idx = components.lastIndex(where: { $0 == "songDetail" }),
-           idx + 1 < components.count {
-            return components[idx + 1]
+        if let idx = pathComponents.lastIndex(where: { $0 == "songDetail" }),
+           idx + 1 < pathComponents.count {
+            return pathComponents[idx + 1]
         }
         return nil
     }
