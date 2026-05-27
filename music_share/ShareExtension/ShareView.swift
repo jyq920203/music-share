@@ -35,7 +35,7 @@ struct ShareView: View {
                     Section {
                         ForEach(viewModel.links) { link in
                             Button {
-                                viewModel.openURL(link.url)
+                                viewModel.openURL(link.url, platformId: link.platform.id)
                             } label: {
                                 HStack(spacing: 12) {
                                     Image(link.platform.id)
