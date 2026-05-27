@@ -98,10 +98,6 @@ struct ContentView: View {
     private var linksListView: some View {
         ScrollView {
             LazyVStack(spacing: 12) {
-                if let source = appState.sourceURL {
-                    sourcePlatformCard(source)
-                }
-
                 ForEach(appState.links) { link in
                     LinkRow(link: link)
                 }

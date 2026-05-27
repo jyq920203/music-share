@@ -7,20 +7,31 @@ class ShareViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        let hostingController = UIHostingController(rootView: ShareLoadingView())
+        let viewModel = ShareViewModel(
+            dismiss: { [weak self] in
+                self?.extensionContext?.completeRequest(returningItems: nil)
+            },
+            openURL: { [weak self] url in
+                self?.extensionContext?.open(url)
+            }
+        )
+
+        let shareView = ShareView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: shareView)
         addChild(hostingController)
         hostingController.view.frame = view.bounds
         hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
         view.addSubview(hostingController.view)
         hostingController.didMove(toParent: self)
 
-        extractURL { [weak self] url in
+        extractURL { url in
             DispatchQueue.main.async {
-                guard let self, let url else {
-                    self?.switchToResult(error: "未找到有效的音乐链接")
-                    return
+                if let url {
+                    viewModel.resolveURL(url)
+                } else {
+                    viewModel.errorMessage = "未找到有效的音乐链接"
+                    viewModel.isLoading = false
                 }
-                self.tryOpenMainApp(url: url)
             }
         }
     }
@@ -62,88 +73,5 @@ class ShareViewController: UIViewController {
         }
 
         completion(nil)
-    }
-
-    private func tryOpenMainApp(url: URL) {
-        guard var components = URLComponents(string: "musicshare://convert") else {
-            switchToConversion(url: url)
-            return
-        }
-        components.queryItems = [URLQueryItem(name: "url", value: url.absoluteString)]
-
-        guard let appURL = components.url else {
-            switchToConversion(url: url)
-            return
-        }
-
-        extensionContext?.open(appURL) { [weak self] success in
-            DispatchQueue.main.async {
-                if success {
-                    self?.extensionContext?.completeRequest(returningItems: nil)
-                } else {
-                    self?.switchToConversion(url: url)
-                }
-            }
-        }
-    }
-
-    private func switchToConversion(url: URL) {
-        let viewModel = ShareViewModel(
-            dismiss: { [weak self] in
-                self?.extensionContext?.completeRequest(returningItems: nil)
-            },
-            openURL: { [weak self] targetURL in
-                self?.extensionContext?.open(targetURL)
-            }
-        )
-
-        let shareView = ShareView(viewModel: viewModel)
-        let hostingController = UIHostingController(rootView: shareView)
-
-        for child in children {
-            child.willMove(toParent: nil)
-            child.view.removeFromSuperview()
-            child.removeFromParent()
-        }
-
-        addChild(hostingController)
-        hostingController.view.frame = view.bounds
-        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(hostingController.view)
-        hostingController.didMove(toParent: self)
-
-        viewModel.resolveURL(url)
-    }
-
-    private func switchToResult(error: String) {
-        let viewModel = ShareViewModel(
-            dismiss: { [weak self] in
-                self?.extensionContext?.completeRequest(returningItems: nil)
-            },
-            openURL: { _ in }
-        )
-        viewModel.errorMessage = error
-        viewModel.isLoading = false
-
-        let shareView = ShareView(viewModel: viewModel)
-        let hostingController = UIHostingController(rootView: shareView)
-
-        for child in children {
-            child.willMove(toParent: nil)
-            child.view.removeFromSuperview()
-            child.removeFromParent()
-        }
-
-        addChild(hostingController)
-        hostingController.view.frame = view.bounds
-        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(hostingController.view)
-        hostingController.didMove(toParent: self)
-    }
-}
-
-struct ShareLoadingView: View {
-    var body: some View {
-        ProgressView("正在打开…")
     }
 }

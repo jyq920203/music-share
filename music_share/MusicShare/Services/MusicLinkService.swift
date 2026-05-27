@@ -67,7 +67,7 @@ final class MusicLinkService {
             searchQuery = extractSearchQuery(from: url)
         }
 
-        async let chineseLinks = searchChineseMusic(searchQuery, originalURL: url)
+        async let chineseLinks = searchChineseMusic(searchQuery, originalURL: url, skipPlatform: sourcePlatform?.id)
         let chinese = (try? await chineseLinks) ?? []
 
         var allLinks = internationalLinks + chinese
@@ -123,7 +123,7 @@ final class MusicLinkService {
 
     private func searchAllPlatforms(query: String, originalURL: URL, sourcePlatform: MusicPlatform?) async throws -> [MusicLink] {
         async let songLinkResult = trySearchViaSongLink(query, originalURL: originalURL, sourcePlatform: sourcePlatform)
-        async let chineseResult = searchChineseMusic(query, originalURL: originalURL)
+        async let chineseResult = searchChineseMusic(query, originalURL: originalURL, skipPlatform: sourcePlatform?.id)
 
         let international = (try? await songLinkResult) ?? []
         let chinese = (try? await chineseResult) ?? []
@@ -261,13 +261,25 @@ final class MusicLinkService {
         return SongInfo(title: title, artist: artist)
     }
 
-    private func searchChineseMusic(_ query: String, originalURL: URL) async throws -> [MusicLink] {
+    private func searchChineseMusic(_ query: String, originalURL: URL, skipPlatform: String? = nil) async throws -> [MusicLink] {
         guard !query.isEmpty else { return [] }
 
-        async let qqResult = searchQQMusic(query, originalURL: originalURL)
-        async let neteaseResult = searchNetEaseMusic(query, originalURL: originalURL)
+        var platforms: [(String, () async throws -> MusicLink?)] = []
 
-        return [try? await qqResult, try? await neteaseResult].compactMap { $0 }
+        if skipPlatform != "qqMusic" {
+            platforms.append(("qqMusic", { try await self.searchQQMusic(query, originalURL: originalURL) }))
+        }
+        if skipPlatform != "netease" {
+            platforms.append(("netease", { try await self.searchNetEaseMusic(query, originalURL: originalURL) }))
+        }
+
+        var results: [MusicLink] = []
+        for (_, task) in platforms {
+            if let link = try? await task() {
+                results.append(link)
+            }
+        }
+        return results
     }
 
     private func searchQQMusic(_ query: String, originalURL: URL) async throws -> MusicLink? {
