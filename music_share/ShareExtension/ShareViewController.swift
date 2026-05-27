@@ -1,3 +1,4 @@
+import SwiftUI
 import UIKit
 import UniformTypeIdentifiers
 
@@ -5,26 +6,29 @@ class ShareViewController: UIViewController {
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        view.backgroundColor = .systemBackground
 
-        let label = UILabel()
-        label.text = "正在打开…"
-        label.font = .systemFont(ofSize: 15)
-        label.textColor = .secondaryLabel
-        label.translatesAutoresizingMaskIntoConstraints = false
-        view.addSubview(label)
-        NSLayoutConstraint.activate([
-            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
-        ])
+        let viewModel = ShareViewModel(dismiss: { [weak self] in
+            self?.extensionContext?.completeRequest(returningItems: nil)
+        }, openURL: { [weak self] url in
+            self?.extensionContext?.open(url)
+        })
 
-        extractURL { [weak self] url in
+        let shareView = ShareView(viewModel: viewModel)
+        let hostingController = UIHostingController(rootView: shareView)
+        addChild(hostingController)
+        hostingController.view.frame = view.bounds
+        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
+        view.addSubview(hostingController.view)
+        hostingController.didMove(toParent: self)
+
+        extractURL { url in
             DispatchQueue.main.async {
-                guard let self, let url else {
-                    self?.showError("未找到链接")
-                    return
+                if let url {
+                    viewModel.resolveURL(url)
+                } else {
+                    viewModel.errorMessage = "未找到有效的音乐链接"
+                    viewModel.isLoading = false
                 }
-                self.openMainApp(with: url)
             }
         }
     }
@@ -67,53 +71,35 @@ class ShareViewController: UIViewController {
 
         completion(nil)
     }
+}
 
-    private func openMainApp(with url: URL) {
-        guard var components = URLComponents(string: "musicshare://convert") else {
-            complete()
-            return
-        }
-        components.queryItems = [URLQueryItem(name: "url", value: url.absoluteString)]
+@MainActor
+final class ShareViewModel: ObservableObject {
+    @Published var links: [MusicLink] = []
+    @Published var sourceURL: URL?
+    @Published var isLoading = true
+    @Published var errorMessage: String?
 
-        guard let appURL = components.url else {
-            complete()
-            return
-        }
+    private let dismissAction: () -> Void
+    private let openURLAction: (URL) -> Void
 
-        extensionContext?.open(appURL) { [weak self] success in
-            DispatchQueue.main.async {
-                if success {
-                    self?.complete()
-                } else {
-                    self?.fallbackToClipboard(url)
-                }
+    init(dismiss: @escaping () -> Void, openURL: @escaping (URL) -> Void) {
+        self.dismissAction = dismiss
+        self.openURLAction = openURL
+    }
+
+    func resolveURL(_ url: URL) {
+        sourceURL = url
+        Task {
+            do {
+                links = try await MusicLinkService.shared.convertLink(url)
+            } catch {
+                errorMessage = error.localizedDescription
             }
+            isLoading = false
         }
     }
 
-    private func fallbackToClipboard(_ url: URL) {
-        UIPasteboard.general.url = url
-
-        let alert = UIAlertController(
-            title: "链接已复制",
-            message: "跳转失败，链接已复制到剪切板。请手动打开「音乐分享」App 粘贴转换。",
-            preferredStyle: .alert
-        )
-        alert.addAction(UIAlertAction(title: "好的", style: .default) { [weak self] _ in
-            self?.complete()
-        })
-        present(alert, animated: true)
-    }
-
-    private func showError(_ message: String) {
-        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
-        alert.addAction(UIAlertAction(title: "关闭", style: .default) { [weak self] _ in
-            self?.complete()
-        })
-        present(alert, animated: true)
-    }
-
-    private func complete() {
-        extensionContext?.completeRequest(returningItems: nil)
-    }
+    func dismiss() { dismissAction() }
+    func openURL(_ url: URL) { openURLAction(url) }
 }

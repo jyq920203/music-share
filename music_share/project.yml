@@ -33,6 +33,10 @@ targets:
     platform: iOS
     sources:
       - path: ShareExtension
+      - path: MusicShare/Models
+      - path: MusicShare/Services
+      - path: MusicShare/Utilities
+      - path: MusicShare/Assets.xcassets
     settings:
       base:
         INFOPLIST_FILE: ShareExtension/Info.plist

@@ -9,10 +9,16 @@
 /* Begin PBXBuildFile section */
 		2AF27AC6E1678ED4C2ADD4BC /* MusicLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6395E2122084CA639507673 /* MusicLinkService.swift */; };
 		2CB02B621DA95260DD9C92EB /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BC76BB09C6251074458F5B66 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
+		47722DBFCE2A447227B24396 /* MusicLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */; };
+		5C2BDFB4F2B8E03428D01E58 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC328B95091E483593E5FC42 /* ShareView.swift */; };
 		5C6F6C692CB7D28BED50A322 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17DD7C8E173E91B24BD6C10 /* ContentView.swift */; };
 		78FFBFE5249558A0BD063A18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C77DCAF1027B16D9E93872EC /* Assets.xcassets */; };
+		7FABB619861EC8F0F739F390 /* MusicLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6395E2122084CA639507673 /* MusicLinkService.swift */; };
 		87B4925E69260E79056516EE /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90080C933BDA1FBAC3A98872 /* ColorExtension.swift */; };
+		8FCDB33DCBBB0B7CB48AA11B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C77DCAF1027B16D9E93872EC /* Assets.xcassets */; };
+		A4EC247CAD2BEE59A6D5ADBA /* MusicPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B137C4D672285FC64941828 /* MusicPlatform.swift */; };
 		AD56E68C292E921953A65731 /* MusicPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B137C4D672285FC64941828 /* MusicPlatform.swift */; };
+		DDB832581FF01F8A3E96CB4F /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90080C933BDA1FBAC3A98872 /* ColorExtension.swift */; };
 		F368D31747CD2D6BE473ED8F /* MusicShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D0B93FC6E2B8DB7EB68A7A /* MusicShareApp.swift */; };
 		F5277D23AC1331FECE1B85F3 /* MusicLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */; };
 		F7072A7325DC6D64A18EB45B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20B6BC6E5CE898021CD0FCA /* ShareViewController.swift */; };
@@ -53,6 +59,7 @@
 		BC76BB09C6251074458F5B66 /* ShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
 		BDDD77E177989B996A96C7DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
 		C77DCAF1027B16D9E93872EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC328B95091E483593E5FC42 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
 		CC6541B1834595E6F8DBE0EB /* MusicShare.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MusicShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		D6F7660AE239A45757789C8D /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
 		E20B6BC6E5CE898021CD0FCA /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
@@ -82,6 +89,7 @@
 			children = (
 				6431AD8A1AA7BD2F4BDDA7C1 /* Info.plist */,
 				D6F7660AE239A45757789C8D /* ShareExtension.entitlements */,
+				CC328B95091E483593E5FC42 /* ShareView.swift */,
 				E20B6BC6E5CE898021CD0FCA /* ShareViewController.swift */,
 			);
 			path = ShareExtension;
@@ -170,6 +178,7 @@
 			buildConfigurationList = 98444CD305FCDDF8F82E2276 /* Build configuration list for PBXNativeTarget "ShareExtension" */;
 			buildPhases = (
 				A60B25E10CA724AA82C2F6DC /* Sources */,
+				2DA57BA446DD9BE477E54D0D /* Resources */,
 			);
 			buildRules = (
 			);
@@ -222,6 +231,14 @@
 /* End PBXProject section */
 
 /* Begin PBXResourcesBuildPhase section */
+		2DA57BA446DD9BE477E54D0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FCDB33DCBBB0B7CB48AA11B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 		B833888201A4040961C5A0D7 /* Resources */ = {
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
@@ -250,6 +267,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				DDB832581FF01F8A3E96CB4F /* ColorExtension.swift in Sources */,
+				47722DBFCE2A447227B24396 /* MusicLink.swift in Sources */,
+				7FABB619861EC8F0F739F390 /* MusicLinkService.swift in Sources */,
+				A4EC247CAD2BEE59A6D5ADBA /* MusicPlatform.swift in Sources */,
+				5C2BDFB4F2B8E03428D01E58 /* ShareView.swift in Sources */,
 				F7072A7325DC6D64A18EB45B /* ShareViewController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
