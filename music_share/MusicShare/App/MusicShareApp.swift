@@ -23,8 +23,17 @@ final class AppState: ObservableObject {
     @Published var songTitle: String?
 
     func handleIncomingURL(_ url: URL) {
-        sourceURL = url
-        Task { await resolveLinks(for: url) }
+        let musicURL: URL
+        if url.scheme == "musicshare",
+           let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+           let queryURL = components.queryItems?.first(where: { $0.name == "url" })?.value,
+           let decoded = URL(string: queryURL) {
+            musicURL = decoded
+        } else {
+            musicURL = url
+        }
+        sourceURL = musicURL
+        Task { await resolveLinks(for: musicURL) }
     }
 
     @MainActor

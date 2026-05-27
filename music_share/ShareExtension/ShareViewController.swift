@@ -1,54 +1,46 @@
-import SwiftUI
 import UIKit
 import UniformTypeIdentifiers
 
 class ShareViewController: UIViewController {
-    private var viewModel: ShareViewModel!
 
     override func viewDidLoad() {
         super.viewDidLoad()
-        viewModel = ShareViewModel(
-            dismiss: { [weak self] in
-                self?.extensionContext?.completeRequest(returningItems: nil)
-            },
-            openURL: { [weak self] url in
-                self?.extensionContext?.open(url, completionHandler: nil)
+        view.backgroundColor = .systemBackground
+
+        let activityIndicator = UIActivityIndicatorView(style: .large)
+        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
+        activityIndicator.startAnimating()
+        view.addSubview(activityIndicator)
+        NSLayoutConstraint.activate([
+            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+        ])
+
+        extractURL { [weak self] url in
+            guard let self, let url else {
+                self?.complete()
+                return
             }
-        )
-        setupUI()
-        loadSharedURL()
+            self.openMainApp(with: url)
+        }
     }
 
-    private func setupUI() {
-        let shareView = ShareView(viewModel: viewModel)
-        let hostingController = UIHostingController(rootView: shareView)
-        addChild(hostingController)
-        hostingController.view.frame = view.bounds
-        hostingController.view.autoresizingMask = [.flexibleWidth, .flexibleHeight]
-        view.addSubview(hostingController.view)
-        hostingController.didMove(toParent: self)
-    }
-
-    private func loadSharedURL() {
+    private func extractURL(completion: @escaping (URL?) -> Void) {
         guard let extensionItem = extensionContext?.inputItems.first as? NSExtensionItem,
               let providers = extensionItem.attachments else {
-            viewModel.errorMessage = "未能获取分享内容"
-            viewModel.isLoading = false
+            completion(nil)
             return
         }
 
         for provider in providers {
             if provider.hasItemConformingToTypeIdentifier(UTType.url.identifier) {
-                provider.loadItem(forTypeIdentifier: UTType.url.identifier, options: nil) { [weak self] item, error in
-                    DispatchQueue.main.async {
-                        if let url = item as? URL {
-                            self?.viewModel.resolveURL(url)
-                        } else if let urlString = item as? String, let url = URL(string: urlString) {
-                            self?.viewModel.resolveURL(url)
-                        } else {
-                            self?.viewModel.errorMessage = "未找到有效的音乐链接"
-                            self?.viewModel.isLoading = false
-                        }
+                provider.loadItem(forTypeIdentifier: UTType.url.identifier) { item, _ in
+                    if let url = item as? URL {
+                        completion(url)
+                    } else if let str = item as? String, let url = URL(string: str) {
+                        completion(url)
+                    } else {
+                        completion(nil)
                     }
                 }
                 return
@@ -57,57 +49,34 @@ class ShareViewController: UIViewController {
 
         for provider in providers {
             if provider.hasItemConformingToTypeIdentifier(UTType.plainText.identifier) {
-                provider.loadItem(forTypeIdentifier: UTType.plainText.identifier, options: nil) { [weak self] item, error in
-                    DispatchQueue.main.async {
-                        if let text = item as? String,
-                           text.hasPrefix("http"),
-                           let url = URL(string: text.trimmingCharacters(in: .whitespacesAndNewlines)) {
-                            self?.viewModel.resolveURL(url)
-                        } else if self?.viewModel.errorMessage == nil && self?.viewModel.links.isEmpty ?? true {
-                            self?.viewModel.errorMessage = "未找到有效的音乐链接"
-                            self?.viewModel.isLoading = false
-                        }
+                provider.loadItem(forTypeIdentifier: UTType.plainText.identifier) { item, _ in
+                    if let text = item as? String, text.hasPrefix("http"),
+                       let url = URL(string: text.trimmingCharacters(in: .whitespacesAndNewlines)) {
+                        completion(url)
+                    } else {
+                        completion(nil)
                     }
                 }
                 return
             }
         }
-    }
-}
 
-@MainActor
-final class ShareViewModel: ObservableObject {
-    @Published var links: [MusicLink] = []
-    @Published var sourceURL: URL?
-    @Published var isLoading = true
-    @Published var errorMessage: String?
-
-    private let dismissAction: () -> Void
-    private let openURLAction: (URL) -> Void
-
-    init(dismiss: @escaping () -> Void, openURL: @escaping (URL) -> Void) {
-        self.dismissAction = dismiss
-        self.openURLAction = openURL
+        completion(nil)
     }
 
-    func resolveURL(_ url: URL) {
-        sourceURL = url
-        Task {
-            do {
-                links = try await MusicLinkService.shared.convertLink(url)
-                errorMessage = nil
-            } catch {
-                errorMessage = error.localizedDescription
-            }
-            isLoading = false
+    private func openMainApp(with url: URL) {
+        let encoded = url.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        guard let appURL = URL(string: "musicshare://convert?url=\(encoded)") else {
+            complete()
+            return
+        }
+
+        extensionContext?.open(appURL) { [weak self] _ in
+            self?.complete()
         }
     }
 
-    func dismiss() {
-        dismissAction()
-    }
-
-    func openURL(_ url: URL) {
-        openURLAction(url)
+    private func complete() {
+        extensionContext?.completeRequest(returningItems: nil)
     }
 }
