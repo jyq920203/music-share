@@ -1,0 +1,483 @@
+// !$*UTF8*$!
+{
+	archiveVersion = 1;
+	classes = {
+	};
+	objectVersion = 77;
+	objects = {
+
+/* Begin PBXBuildFile section */
+		2AF27AC6E1678ED4C2ADD4BC /* MusicLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6395E2122084CA639507673 /* MusicLinkService.swift */; };
+		47722DBFCE2A447227B24396 /* MusicLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */; };
+		5C2BDFB4F2B8E03428D01E58 /* ShareView.swift in Sources */ = {isa = PBXBuildFile; fileRef = CC328B95091E483593E5FC42 /* ShareView.swift */; };
+		5C6F6C692CB7D28BED50A322 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17DD7C8E173E91B24BD6C10 /* ContentView.swift */; };
+		78FFBFE5249558A0BD063A18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C77DCAF1027B16D9E93872EC /* Assets.xcassets */; };
+		7FABB619861EC8F0F739F390 /* MusicLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6395E2122084CA639507673 /* MusicLinkService.swift */; };
+		87B4925E69260E79056516EE /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90080C933BDA1FBAC3A98872 /* ColorExtension.swift */; };
+		8FCDB33DCBBB0B7CB48AA11B /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C77DCAF1027B16D9E93872EC /* Assets.xcassets */; };
+		A4EC247CAD2BEE59A6D5ADBA /* MusicPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B137C4D672285FC64941828 /* MusicPlatform.swift */; };
+		AD56E68C292E921953A65731 /* MusicPlatform.swift in Sources */ = {isa = PBXBuildFile; fileRef = 8B137C4D672285FC64941828 /* MusicPlatform.swift */; };
+		DDB832581FF01F8A3E96CB4F /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90080C933BDA1FBAC3A98872 /* ColorExtension.swift */; };
+		F368D31747CD2D6BE473ED8F /* MusicShareApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = 68D0B93FC6E2B8DB7EB68A7A /* MusicShareApp.swift */; };
+		F5277D23AC1331FECE1B85F3 /* MusicLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */; };
+		F7072A7325DC6D64A18EB45B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20B6BC6E5CE898021CD0FCA /* ShareViewController.swift */; };
+/* End PBXBuildFile section */
+
+/* Begin PBXFileReference section */
+		0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLink.swift; sourceTree = "<group>"; };
+		6431AD8A1AA7BD2F4BDDA7C1 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		68D0B93FC6E2B8DB7EB68A7A /* MusicShareApp.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicShareApp.swift; sourceTree = "<group>"; };
+		8B137C4D672285FC64941828 /* MusicPlatform.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicPlatform.swift; sourceTree = "<group>"; };
+		90080C933BDA1FBAC3A98872 /* ColorExtension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ColorExtension.swift; sourceTree = "<group>"; };
+		A6395E2122084CA639507673 /* MusicLinkService.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLinkService.swift; sourceTree = "<group>"; };
+		B17DD7C8E173E91B24BD6C10 /* ContentView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ContentView.swift; sourceTree = "<group>"; };
+		BC76BB09C6251074458F5B66 /* ShareExtension.appex */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = "wrapper.app-extension"; path = ShareExtension.appex; sourceTree = BUILT_PRODUCTS_DIR; };
+		BDDD77E177989B996A96C7DB /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist; path = Info.plist; sourceTree = "<group>"; };
+		C77DCAF1027B16D9E93872EC /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
+		CC328B95091E483593E5FC42 /* ShareView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareView.swift; sourceTree = "<group>"; };
+		CC6541B1834595E6F8DBE0EB /* MusicShare.app */ = {isa = PBXFileReference; includeInIndex = 0; lastKnownFileType = wrapper.application; path = MusicShare.app; sourceTree = BUILT_PRODUCTS_DIR; };
+		D6F7660AE239A45757789C8D /* ShareExtension.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = ShareExtension.entitlements; sourceTree = "<group>"; };
+		E20B6BC6E5CE898021CD0FCA /* ShareViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ShareViewController.swift; sourceTree = "<group>"; };
+/* End PBXFileReference section */
+
+/* Begin PBXGroup section */
+		18E14B8A16BF9314D924D5B6 /* App */ = {
+			isa = PBXGroup;
+			children = (
+				B17DD7C8E173E91B24BD6C10 /* ContentView.swift */,
+				68D0B93FC6E2B8DB7EB68A7A /* MusicShareApp.swift */,
+			);
+			path = App;
+			sourceTree = "<group>";
+		};
+		35C08B7EDC556307212042E8 = {
+			isa = PBXGroup;
+			children = (
+				BEF7E90FCEF069CD1F91C1A0 /* MusicShare */,
+				360643497556B40913C1F859 /* ShareExtension */,
+				B9F12E1BFE33E29D9820F546 /* Products */,
+			);
+			sourceTree = "<group>";
+		};
+		360643497556B40913C1F859 /* ShareExtension */ = {
+			isa = PBXGroup;
+			children = (
+				6431AD8A1AA7BD2F4BDDA7C1 /* Info.plist */,
+				D6F7660AE239A45757789C8D /* ShareExtension.entitlements */,
+				CC328B95091E483593E5FC42 /* ShareView.swift */,
+				E20B6BC6E5CE898021CD0FCA /* ShareViewController.swift */,
+			);
+			path = ShareExtension;
+			sourceTree = "<group>";
+		};
+		71533CA6D5FC7B24276F76CD /* Models */ = {
+			isa = PBXGroup;
+			children = (
+				0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */,
+				8B137C4D672285FC64941828 /* MusicPlatform.swift */,
+			);
+			path = Models;
+			sourceTree = "<group>";
+		};
+		71D4BD8CEDF3090375AE1AE5 /* Utilities */ = {
+			isa = PBXGroup;
+			children = (
+				90080C933BDA1FBAC3A98872 /* ColorExtension.swift */,
+			);
+			path = Utilities;
+			sourceTree = "<group>";
+		};
+		B7A6098C8B205F884FCBABC7 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = Views;
+			sourceTree = "<group>";
+		};
+		B9F12E1BFE33E29D9820F546 /* Products */ = {
+			isa = PBXGroup;
+			children = (
+				CC6541B1834595E6F8DBE0EB /* MusicShare.app */,
+				BC76BB09C6251074458F5B66 /* ShareExtension.appex */,
+			);
+			name = Products;
+			sourceTree = "<group>";
+		};
+		BEF7E90FCEF069CD1F91C1A0 /* MusicShare */ = {
+			isa = PBXGroup;
+			children = (
+				C77DCAF1027B16D9E93872EC /* Assets.xcassets */,
+				BDDD77E177989B996A96C7DB /* Info.plist */,
+				18E14B8A16BF9314D924D5B6 /* App */,
+				71533CA6D5FC7B24276F76CD /* Models */,
+				FF6B3E79A80E029CDF8DF8AA /* Services */,
+				71D4BD8CEDF3090375AE1AE5 /* Utilities */,
+				B7A6098C8B205F884FCBABC7 /* Views */,
+			);
+			path = MusicShare;
+			sourceTree = "<group>";
+		};
+		FF6B3E79A80E029CDF8DF8AA /* Services */ = {
+			isa = PBXGroup;
+			children = (
+				A6395E2122084CA639507673 /* MusicLinkService.swift */,
+			);
+			path = Services;
+			sourceTree = "<group>";
+		};
+/* End PBXGroup section */
+
+/* Begin PBXNativeTarget section */
+		47786D02120DFA9AFE60C553 /* MusicShare */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = ACB1DE6FF3315A641FDACB89 /* Build configuration list for PBXNativeTarget "MusicShare" */;
+			buildPhases = (
+				0198FEB5A2F7F5C1AC395C37 /* Sources */,
+				B833888201A4040961C5A0D7 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = MusicShare;
+			packageProductDependencies = (
+			);
+			productName = MusicShare;
+			productReference = CC6541B1834595E6F8DBE0EB /* MusicShare.app */;
+			productType = "com.apple.product-type.application";
+		};
+		6590D3163A353E2351564B16 /* ShareExtension */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = 98444CD305FCDDF8F82E2276 /* Build configuration list for PBXNativeTarget "ShareExtension" */;
+			buildPhases = (
+				A60B25E10CA724AA82C2F6DC /* Sources */,
+				2DA57BA446DD9BE477E54D0D /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+			);
+			name = ShareExtension;
+			packageProductDependencies = (
+			);
+			productName = ShareExtension;
+			productReference = BC76BB09C6251074458F5B66 /* ShareExtension.appex */;
+			productType = "com.apple.product-type.app-extension";
+		};
+/* End PBXNativeTarget section */
+
+/* Begin PBXProject section */
+		0627C3EA7F82E8079D0FA74D /* Project object */ = {
+			isa = PBXProject;
+			attributes = {
+				BuildIndependentTargetsInParallel = YES;
+				LastUpgradeCheck = 1600;
+				TargetAttributes = {
+					47786D02120DFA9AFE60C553 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+					6590D3163A353E2351564B16 = {
+						DevelopmentTeam = "";
+						ProvisioningStyle = Automatic;
+					};
+				};
+			};
+			buildConfigurationList = E2D0BFE634A6CF8975DD5FC5 /* Build configuration list for PBXProject "MusicShare" */;
+			developmentRegion = en;
+			hasScannedForEncodings = 0;
+			knownRegions = (
+				Base,
+				en,
+			);
+			mainGroup = 35C08B7EDC556307212042E8;
+			minimizedProjectReferenceProxies = 1;
+			preferredProjectObjectVersion = 77;
+			productRefGroup = B9F12E1BFE33E29D9820F546 /* Products */;
+			projectDirPath = "";
+			projectRoot = "";
+			targets = (
+				47786D02120DFA9AFE60C553 /* MusicShare */,
+				6590D3163A353E2351564B16 /* ShareExtension */,
+			);
+		};
+/* End PBXProject section */
+
+/* Begin PBXResourcesBuildPhase section */
+		2DA57BA446DD9BE477E54D0D /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				8FCDB33DCBBB0B7CB48AA11B /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		B833888201A4040961C5A0D7 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				78FFBFE5249558A0BD063A18 /* Assets.xcassets in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXResourcesBuildPhase section */
+
+/* Begin PBXSourcesBuildPhase section */
+		0198FEB5A2F7F5C1AC395C37 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				87B4925E69260E79056516EE /* ColorExtension.swift in Sources */,
+				5C6F6C692CB7D28BED50A322 /* ContentView.swift in Sources */,
+				F5277D23AC1331FECE1B85F3 /* MusicLink.swift in Sources */,
+				2AF27AC6E1678ED4C2ADD4BC /* MusicLinkService.swift in Sources */,
+				AD56E68C292E921953A65731 /* MusicPlatform.swift in Sources */,
+				F368D31747CD2D6BE473ED8F /* MusicShareApp.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		A60B25E10CA724AA82C2F6DC /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				DDB832581FF01F8A3E96CB4F /* ColorExtension.swift in Sources */,
+				47722DBFCE2A447227B24396 /* MusicLink.swift in Sources */,
+				7FABB619861EC8F0F739F390 /* MusicLinkService.swift in Sources */,
+				A4EC247CAD2BEE59A6D5ADBA /* MusicPlatform.swift in Sources */,
+				5C2BDFB4F2B8E03428D01E58 /* ShareView.swift in Sources */,
+				F7072A7325DC6D64A18EB45B /* ShareViewController.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXSourcesBuildPhase section */
+
+/* Begin XCBuildConfiguration section */
+		03F57C845881EB92BF4D4F3E /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MusicShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.musicshare.app;
+				PRODUCT_NAME = MusicShare;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+		4649D614CE0449F72FA0BAE0 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = dwarf;
+				DEVELOPMENT_TEAM = "";
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				ENABLE_TESTABILITY = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_DYNAMIC_NO_PIC = NO;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_OPTIMIZATION_LEVEL = 0;
+				GCC_PREPROCESSOR_DEFINITIONS = (
+					"$(inherited)",
+					"DEBUG=1",
+				);
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				ONLY_ACTIVE_ARCH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_ACTIVE_COMPILATION_CONDITIONS = DEBUG;
+				SWIFT_OPTIMIZATION_LEVEL = "-Onone";
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Debug;
+		};
+		CD18552896B5E54B71C5A810 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ALWAYS_SEARCH_USER_PATHS = NO;
+				CLANG_ANALYZER_NONNULL = YES;
+				CLANG_ANALYZER_NUMBER_OBJECT_CONVERSION = YES_AGGRESSIVE;
+				CLANG_CXX_LANGUAGE_STANDARD = "gnu++14";
+				CLANG_CXX_LIBRARY = "libc++";
+				CLANG_ENABLE_MODULES = YES;
+				CLANG_ENABLE_OBJC_ARC = YES;
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CLANG_WARN_BLOCK_CAPTURE_AUTORELEASING = YES;
+				CLANG_WARN_BOOL_CONVERSION = YES;
+				CLANG_WARN_COMMA = YES;
+				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
+				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
+				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
+				CLANG_WARN_EMPTY_BODY = YES;
+				CLANG_WARN_ENUM_CONVERSION = YES;
+				CLANG_WARN_INFINITE_RECURSION = YES;
+				CLANG_WARN_INT_CONVERSION = YES;
+				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
+				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
+				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
+				CLANG_WARN_QUOTED_INCLUDE_IN_FRAMEWORK_HEADER = YES;
+				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
+				CLANG_WARN_STRICT_PROTOTYPES = YES;
+				CLANG_WARN_SUSPICIOUS_MOVE = YES;
+				CLANG_WARN_UNGUARDED_AVAILABILITY = YES_AGGRESSIVE;
+				CLANG_WARN_UNREACHABLE_CODE = YES;
+				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
+				COPY_PHASE_STRIP = NO;
+				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
+				DEVELOPMENT_TEAM = "";
+				ENABLE_NS_ASSERTIONS = NO;
+				ENABLE_STRICT_OBJC_MSGSEND = YES;
+				GCC_C_LANGUAGE_STANDARD = gnu11;
+				GCC_NO_COMMON_BLOCKS = YES;
+				GCC_WARN_64_TO_32_BIT_CONVERSION = YES;
+				GCC_WARN_ABOUT_RETURN_TYPE = YES_ERROR;
+				GCC_WARN_UNDECLARED_SELECTOR = YES;
+				GCC_WARN_UNINITIALIZED_AUTOS = YES_AGGRESSIVE;
+				GCC_WARN_UNUSED_FUNCTION = YES;
+				GCC_WARN_UNUSED_VARIABLE = YES;
+				IPHONEOS_DEPLOYMENT_TARGET = 17.0;
+				MTL_ENABLE_DEBUG_INFO = NO;
+				MTL_FAST_MATH = YES;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SDKROOT = iphoneos;
+				SWIFT_COMPILATION_MODE = wholemodule;
+				SWIFT_OPTIMIZATION_LEVEL = "-O";
+				SWIFT_VERSION = 5.10;
+				TARGETED_DEVICE_FAMILY = 1;
+			};
+			name = Release;
+		};
+		EAF5FF9A98EAE5CC66A737D2 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				CODE_SIGN_IDENTITY = "iPhone Developer";
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = MusicShare/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = com.musicshare.app;
+				PRODUCT_NAME = MusicShare;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		EB1F89F50083F748F4D4A08E /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.musicshare.app.share-extension";
+				PRODUCT_NAME = ShareExtension;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Release;
+		};
+		F0B94CE67712DCC7B71F73FB /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				CODE_SIGN_ENTITLEMENTS = ShareExtension/ShareExtension.entitlements;
+				CODE_SIGN_STYLE = Automatic;
+				INFOPLIST_FILE = ShareExtension/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = (
+					"$(inherited)",
+					"@executable_path/Frameworks",
+					"@executable_path/../../Frameworks",
+				);
+				PRODUCT_BUNDLE_IDENTIFIER = "com.musicshare.app.share-extension";
+				PRODUCT_NAME = ShareExtension;
+				SDKROOT = iphoneos;
+				TARGETED_DEVICE_FAMILY = "1,2";
+			};
+			name = Debug;
+		};
+/* End XCBuildConfiguration section */
+
+/* Begin XCConfigurationList section */
+		98444CD305FCDDF8F82E2276 /* Build configuration list for PBXNativeTarget "ShareExtension" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F0B94CE67712DCC7B71F73FB /* Debug */,
+				EB1F89F50083F748F4D4A08E /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		ACB1DE6FF3315A641FDACB89 /* Build configuration list for PBXNativeTarget "MusicShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				03F57C845881EB92BF4D4F3E /* Debug */,
+				EAF5FF9A98EAE5CC66A737D2 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+		E2D0BFE634A6CF8975DD5FC5 /* Build configuration list for PBXProject "MusicShare" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				4649D614CE0449F72FA0BAE0 /* Debug */,
+				CD18552896B5E54B71C5A810 /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Debug;
+		};
+/* End XCConfigurationList section */
+	};
+	rootObject = 0627C3EA7F82E8079D0FA74D /* Project object */;
+}

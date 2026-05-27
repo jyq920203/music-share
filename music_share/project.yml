@@ -1,0 +1,62 @@
+name: MusicShare
+options:
+  bundleIdPrefix: com.musicshare
+  deploymentTarget:
+    iOS: "17.0"
+  xcodeVersion: "16.0"
+  generateEmptyDirectories: true
+
+settings:
+  base:
+    SWIFT_VERSION: "5.10"
+    TARGETED_DEVICE_FAMILY: "1"
+    DEVELOPMENT_TEAM: ""
+
+targets:
+  MusicShare:
+    type: application
+    platform: iOS
+    sources:
+      - path: MusicShare
+    settings:
+      base:
+        INFOPLIST_FILE: MusicShare/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.musicshare.app
+        PRODUCT_NAME: MusicShare
+        CODE_SIGN_STYLE: Automatic
+    dependencies: []
+
+  ShareExtension:
+    type: app-extension
+    platform: iOS
+    sources:
+      - path: ShareExtension
+      - path: MusicShare/Models
+      - path: MusicShare/Services
+      - path: MusicShare/Utilities
+      - path: MusicShare/Assets.xcassets
+    settings:
+      base:
+        INFOPLIST_FILE: ShareExtension/Info.plist
+        PRODUCT_BUNDLE_IDENTIFIER: com.musicshare.app.share-extension
+        PRODUCT_NAME: ShareExtension
+        CODE_SIGN_STYLE: Automatic
+    entitlements:
+      path: ShareExtension/ShareExtension.entitlements
+
+schemes:
+  MusicShare:
+    build:
+      targets:
+        MusicShare: all
+        ShareExtension: all
+    run:
+      config: Debug
+    test:
+      config: Debug
+    profile:
+      config: Release
+    analyze:
+      config: Debug
+    archive:
+      config: Release
