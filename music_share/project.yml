@@ -1,6 +1,6 @@
 name: MusicShare
 options:
-  bundleIdPrefix: com.musicshare
+  bundleIdPrefix: com.jyq920203.musicshare
   deploymentTarget:
     iOS: "17.0"
   xcodeVersion: "16.0"
@@ -10,7 +10,7 @@ settings:
   base:
     SWIFT_VERSION: "5.10"
     TARGETED_DEVICE_FAMILY: "1"
-    DEVELOPMENT_TEAM: ""
+    DEVELOPMENT_TEAM: "U762CH5KUY"
 
 targets:
   MusicShare:
@@ -21,7 +21,7 @@ targets:
     settings:
       base:
         INFOPLIST_FILE: MusicShare/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: com.musicshare.app
+        PRODUCT_BUNDLE_IDENTIFIER: com.jyq920203.musicshare
         PRODUCT_NAME: MusicShare
         CODE_SIGN_STYLE: Automatic
     dependencies:
@@ -36,7 +36,7 @@ targets:
     settings:
       base:
         INFOPLIST_FILE: ShareExtension/Info.plist
-        PRODUCT_BUNDLE_IDENTIFIER: com.musicshare.app.share-extension
+        PRODUCT_BUNDLE_IDENTIFIER: com.jyq920203.musicshare.share-extension
         PRODUCT_NAME: ShareExtension
         CODE_SIGN_STYLE: Automatic
     entitlements:

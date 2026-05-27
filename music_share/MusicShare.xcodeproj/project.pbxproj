@@ -192,11 +192,11 @@
 				LastUpgradeCheck = 1600;
 				TargetAttributes = {
 					47786D02120DFA9AFE60C553 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = U762CH5KUY;
 						ProvisioningStyle = Automatic;
 					};
 					6590D3163A353E2351564B16 = {
-						DevelopmentTeam = "";
+						DevelopmentTeam = U762CH5KUY;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -276,7 +276,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.musicshare.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jyq920203.musicshare;
 				PRODUCT_NAME = MusicShare;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -318,7 +318,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = dwarf;
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U762CH5KUY;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				ENABLE_TESTABILITY = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -383,7 +383,7 @@
 				CLANG_WARN__DUPLICATE_METHOD_MATCH = YES;
 				COPY_PHASE_STRIP = NO;
 				DEBUG_INFORMATION_FORMAT = "dwarf-with-dsym";
-				DEVELOPMENT_TEAM = "";
+				DEVELOPMENT_TEAM = U762CH5KUY;
 				ENABLE_NS_ASSERTIONS = NO;
 				ENABLE_STRICT_OBJC_MSGSEND = YES;
 				GCC_C_LANGUAGE_STANDARD = gnu11;
@@ -417,7 +417,7 @@
 					"$(inherited)",
 					"@executable_path/Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = com.musicshare.app;
+				PRODUCT_BUNDLE_IDENTIFIER = com.jyq920203.musicshare;
 				PRODUCT_NAME = MusicShare;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -435,7 +435,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.musicshare.app.share-extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jyq920203.musicshare.share-extension";
 				PRODUCT_NAME = ShareExtension;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
@@ -453,7 +453,7 @@
 					"@executable_path/Frameworks",
 					"@executable_path/../../Frameworks",
 				);
-				PRODUCT_BUNDLE_IDENTIFIER = "com.musicshare.app.share-extension";
+				PRODUCT_BUNDLE_IDENTIFIER = "com.jyq920203.musicshare.share-extension";
 				PRODUCT_NAME = ShareExtension;
 				SDKROOT = iphoneos;
 				TARGETED_DEVICE_FAMILY = "1,2";
