@@ -92,11 +92,12 @@ final class MusicLinkService {
     }
 
     func buildSearchLinks(for platforms: [MusicPlatform], query: String) -> [MusicLink] {
-        platforms.map { platform in
-            let encoded = query.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? query
-            let url = Self.searchURLMap[platform.id, default: "https://\(platform.domain)"]
-            let expanded = url.replacingOccurrences(of: "{q}", with: encoded)
-            return MusicLink(platform: platform, url: URL(string: expanded) ?? URL(string: "https://\(platform.domain)")!, originalURL: nil)
+        let noSpace = query.replacingOccurrences(of: " ", with: "")
+        let encoded = noSpace.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? noSpace
+        return platforms.map { platform in
+            let template = searchURLMap[platform.id, default: "https://\(platform.domain)"]
+            let urlStr = template.replacingOccurrences(of: "{q}", with: encoded)
+            return MusicLink(platform: platform, url: URL(string: urlStr)!, originalURL: nil)
         }
     }
 
@@ -221,7 +222,7 @@ final class MusicLinkService {
 
     // MARK: - URL Utils
 
-    static let searchURLMap: [String: String] = [
+    private let searchURLMap: [String: String] = [
         "spotify": "https://open.spotify.com/search/{q}",
         "appleMusic": "https://music.apple.com/search?term={q}",
         "youtube": "https://www.youtube.com/results?search_query={q}",
@@ -289,13 +290,6 @@ private struct QQMusicStrategy: ConversionStrategy {
             throw ServiceError.invalidURL
         }
 
-        // Try Song.Link first with normalized URL (it rarely works but worth a shot)
-        let normalized = URL(string: "https://y.qq.com/n/ryqq/songDetail/\(songId)") ?? url
-        if let payload = try? await service.songLinkResolve(normalized), !payload.links.isEmpty {
-            return await fillMissing(international: payload.links, query: payload.searchQuery, skip: "qqMusic", service: service)
-        }
-
-        // Fallback: get song info from QQ API
         let info = try await service.getQQMusicSongInfo(songId: songId)
         let query = "\(info.title) \(info.artist)"
         return await fillMissing(international: [], query: query, skip: "qqMusic", service: service)
@@ -308,10 +302,6 @@ private struct NetEaseStrategy: ConversionStrategy {
     func convert(_ url: URL, service: MusicLinkService) async throws -> [MusicLink] {
         guard let songId = service.extractNetEaseSongID(from: url) else {
             throw ServiceError.invalidURL
-        }
-
-        if let payload = try? await service.songLinkResolve(url), !payload.links.isEmpty {
-            return await fillMissing(international: payload.links, query: payload.searchQuery, skip: "netease", service: service)
         }
 
         let info = try await service.getNetEaseSongInfo(songId: songId)
