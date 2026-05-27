@@ -24,7 +24,9 @@ targets:
         PRODUCT_BUNDLE_IDENTIFIER: com.musicshare.app
         PRODUCT_NAME: MusicShare
         CODE_SIGN_STYLE: Automatic
-    dependencies: []
+    dependencies:
+      - target: ShareExtension
+        embed: true
 
   ShareExtension:
     type: app-extension

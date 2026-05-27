@@ -8,6 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		2AF27AC6E1678ED4C2ADD4BC /* MusicLinkService.swift in Sources */ = {isa = PBXBuildFile; fileRef = A6395E2122084CA639507673 /* MusicLinkService.swift */; };
+		2CB02B621DA95260DD9C92EB /* ShareExtension.appex in Embed Foundation Extensions */ = {isa = PBXBuildFile; fileRef = BC76BB09C6251074458F5B66 /* ShareExtension.appex */; settings = {ATTRIBUTES = (RemoveHeadersOnCopy, ); }; };
 		5C6F6C692CB7D28BED50A322 /* ContentView.swift in Sources */ = {isa = PBXBuildFile; fileRef = B17DD7C8E173E91B24BD6C10 /* ContentView.swift */; };
 		78FFBFE5249558A0BD063A18 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = C77DCAF1027B16D9E93872EC /* Assets.xcassets */; };
 		87B4925E69260E79056516EE /* ColorExtension.swift in Sources */ = {isa = PBXBuildFile; fileRef = 90080C933BDA1FBAC3A98872 /* ColorExtension.swift */; };
@@ -16,6 +17,30 @@
 		F5277D23AC1331FECE1B85F3 /* MusicLink.swift in Sources */ = {isa = PBXBuildFile; fileRef = 0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */; };
 		F7072A7325DC6D64A18EB45B /* ShareViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = E20B6BC6E5CE898021CD0FCA /* ShareViewController.swift */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		2ACC917CC0AD2A883D7A55B1 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = 0627C3EA7F82E8079D0FA74D /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = 6590D3163A353E2351564B16;
+			remoteInfo = ShareExtension;
+		};
+/* End PBXContainerItemProxy section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		EE456000D345A2C7ADA69F18 /* Embed Foundation Extensions */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 13;
+			files = (
+				2CB02B621DA95260DD9C92EB /* ShareExtension.appex in Embed Foundation Extensions */,
+			);
+			name = "Embed Foundation Extensions";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		0FA1CD8FD2EF5652A4D53AEC /* MusicLink.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MusicLink.swift; sourceTree = "<group>"; };
@@ -126,10 +151,12 @@
 			buildPhases = (
 				0198FEB5A2F7F5C1AC395C37 /* Sources */,
 				B833888201A4040961C5A0D7 /* Resources */,
+				EE456000D345A2C7ADA69F18 /* Embed Foundation Extensions */,
 			);
 			buildRules = (
 			);
 			dependencies = (
+				E2E669CCCBB0CA1B86BE5390 /* PBXTargetDependency */,
 			);
 			name = MusicShare;
 			packageProductDependencies = (
@@ -228,6 +255,14 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		E2E669CCCBB0CA1B86BE5390 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = 6590D3163A353E2351564B16 /* ShareExtension */;
+			targetProxy = 2ACC917CC0AD2A883D7A55B1 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin XCBuildConfiguration section */
 		03F57C845881EB92BF4D4F3E /* Debug */ = {
