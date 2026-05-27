@@ -4,9 +4,9 @@ struct MusicLink: Identifiable {
     let id = UUID()
     let platform: MusicPlatform
     let url: URL
-    let originalURL: URL
+    let originalURL: URL?
 
-    init(platform: MusicPlatform, url: URL, originalURL: URL) {
+    init(platform: MusicPlatform, url: URL, originalURL: URL?) {
         self.platform = platform
         self.url = url
         self.originalURL = originalURL
