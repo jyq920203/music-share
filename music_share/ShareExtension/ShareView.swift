@@ -6,6 +6,14 @@ struct ShareView: View {
     var body: some View {
         VStack(spacing: 0) {
             HStack {
+                if viewModel.sourceURL != nil {
+                    Button {
+                        viewModel.openInMainApp()
+                    } label: {
+                        Image(systemName: "arrow.up.left")
+                    }
+                }
+                Spacer()
                 Text("音乐分享")
                     .font(.headline)
                 Spacer()

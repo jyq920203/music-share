@@ -28,9 +28,17 @@ final class ShareViewModel: ObservableObject {
     }
 
     func dismiss() { dismissAction() }
+
     func openURL(_ url: URL, platformId: String) {
         let schemeURL = buildSchemeURL(webURL: url, platformId: platformId)
         openURLAction(schemeURL ?? url)
+    }
+
+    func openInMainApp() {
+        guard let sourceURL else { return }
+        let encoded = sourceURL.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
+        guard let mainAppURL = URL(string: "musicshare://share?url=\(encoded)") else { return }
+        openURLAction(mainAppURL)
     }
 
     private func buildSchemeURL(webURL: URL, platformId: String) -> URL? {

@@ -23,6 +23,25 @@ struct ContentView: View {
             .navigationTitle("音乐分享")
             .navigationBarTitleDisplayMode(.large)
         }
+        .onAppear {
+            appState.checkClipboard()
+        }
+        .onChange(of: appState.sourceURL) { newURL in
+            if let url = newURL {
+                inputURL = url.absoluteString
+            }
+        }
+        .alert("检测到剪贴板中的链接", isPresented: Binding(
+            get: { appState.pendingClipboardURL != nil },
+            set: { if !$0 { appState.dismissClipboard() } }
+        )) {
+            Button("解析") { appState.confirmClipboard() }
+            Button("忽略", role: .cancel) { appState.dismissClipboard() }
+        } message: {
+            if let url = appState.pendingClipboardURL {
+                Text(url.absoluteString)
+            }
+        }
     }
 
     private var inputSection: some View {
