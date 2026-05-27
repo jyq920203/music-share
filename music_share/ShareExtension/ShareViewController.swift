@@ -7,21 +7,25 @@ class ShareViewController: UIViewController {
         super.viewDidLoad()
         view.backgroundColor = .systemBackground
 
-        let activityIndicator = UIActivityIndicatorView(style: .large)
-        activityIndicator.translatesAutoresizingMaskIntoConstraints = false
-        activityIndicator.startAnimating()
-        view.addSubview(activityIndicator)
+        let label = UILabel()
+        label.text = "正在打开…"
+        label.font = .systemFont(ofSize: 15)
+        label.textColor = .secondaryLabel
+        label.translatesAutoresizingMaskIntoConstraints = false
+        view.addSubview(label)
         NSLayoutConstraint.activate([
-            activityIndicator.centerXAnchor.constraint(equalTo: view.centerXAnchor),
-            activityIndicator.centerYAnchor.constraint(equalTo: view.centerYAnchor)
+            label.centerXAnchor.constraint(equalTo: view.centerXAnchor),
+            label.centerYAnchor.constraint(equalTo: view.centerYAnchor)
         ])
 
         extractURL { [weak self] url in
-            guard let self, let url else {
-                self?.complete()
-                return
+            DispatchQueue.main.async {
+                guard let self, let url else {
+                    self?.showError("未找到链接")
+                    return
+                }
+                self.openMainApp(with: url)
             }
-            self.openMainApp(with: url)
         }
     }
 
@@ -65,15 +69,48 @@ class ShareViewController: UIViewController {
     }
 
     private func openMainApp(with url: URL) {
-        let encoded = url.absoluteString.addingPercentEncoding(withAllowedCharacters: .urlQueryAllowed) ?? ""
-        guard let appURL = URL(string: "musicshare://convert?url=\(encoded)") else {
+        guard var components = URLComponents(string: "musicshare://convert") else {
+            complete()
+            return
+        }
+        components.queryItems = [URLQueryItem(name: "url", value: url.absoluteString)]
+
+        guard let appURL = components.url else {
             complete()
             return
         }
 
-        extensionContext?.open(appURL) { [weak self] _ in
-            self?.complete()
+        extensionContext?.open(appURL) { [weak self] success in
+            DispatchQueue.main.async {
+                if success {
+                    self?.complete()
+                } else {
+                    self?.fallbackToClipboard(url)
+                }
+            }
         }
+    }
+
+    private func fallbackToClipboard(_ url: URL) {
+        UIPasteboard.general.url = url
+
+        let alert = UIAlertController(
+            title: "链接已复制",
+            message: "跳转失败，链接已复制到剪切板。请手动打开「音乐分享」App 粘贴转换。",
+            preferredStyle: .alert
+        )
+        alert.addAction(UIAlertAction(title: "好的", style: .default) { [weak self] _ in
+            self?.complete()
+        })
+        present(alert, animated: true)
+    }
+
+    private func showError(_ message: String) {
+        let alert = UIAlertController(title: nil, message: message, preferredStyle: .alert)
+        alert.addAction(UIAlertAction(title: "关闭", style: .default) { [weak self] _ in
+            self?.complete()
+        })
+        present(alert, animated: true)
     }
 
     private func complete() {
