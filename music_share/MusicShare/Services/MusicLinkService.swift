@@ -17,6 +17,10 @@ final class MusicLinkService {
         let trimmed = trimURL(url)
         let sourcePlatform = MusicPlatform.detectPlatform(from: trimmed)
 
+        guard isValidMusicURL(trimmed) else {
+            throw ServiceError.notAMusicLink
+        }
+
         if sourcePlatform?.id == "qqMusic" {
             return try await convertFromQQMusic(trimmed)
         }
@@ -401,6 +405,48 @@ final class MusicLinkService {
         return queryItems.first(where: { $0.name == "id" })?.value
     }
 
+    private func isValidMusicURL(_ url: URL) -> Bool {
+        let path = url.path.lowercased()
+        let host = url.host?.lowercased() ?? ""
+
+        if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+           components.queryItems?.contains(where: { $0.name == "i" }) == true {
+            return true
+        }
+
+        if let components = URLComponents(url: url, resolvingAgainstBaseURL: false),
+           components.queryItems?.contains(where: { $0.name == "id" }) == true,
+           (host.contains("music.163.com") || host.contains("y.qq.com")) {
+            return true
+        }
+
+        let validPatterns: [(host: String, path: String)] = [
+            ("open.spotify.com", "/track/"),
+            ("y.qq.com", "songdetail"),
+            ("youtube.com", "/watch"),
+            ("music.youtube.com", "/watch"),
+            ("deezer.com", "/track/"),
+            ("tidal.com", "/track/"),
+            ("tidal.com", "/browse/track/"),
+        ]
+
+        for pattern in validPatterns {
+            if host.contains(pattern.host) {
+                if pattern.path.isEmpty { return true }
+                if path.contains(pattern.path) { return true }
+            }
+        }
+
+        let pathOnlyInvalid = ["/search", "/artist", "/playlist", "/browse/featured", "/genre", "/radio", "/show", "/episode", "/concert", "/user", "/section"]
+        let hasOnlyInvalidPath = pathOnlyInvalid.allSatisfy { !path.contains($0) == false }
+        let isPlatformHost = host.contains("open.spotify.com") || host.contains("deezer.com") || host.contains("tidal.com")
+
+        if isPlatformHost && path.contains("/search") { return false }
+        if isPlatformHost && path.contains("/artist") { return false }
+
+        return host.contains("y.qq.com") || host.contains("music.163.com") || host.contains("music.apple.com") || host.contains("music.amazon.com") || host.contains("music.youtube.com") || host.contains("youtube.com")
+    }
+
     private func trimURL(_ url: URL) -> URL {
         guard var components = URLComponents(url: url, resolvingAgainstBaseURL: false) else {
             return url
@@ -451,6 +497,7 @@ enum ServiceError: LocalizedError {
     case invalidResponse
     case serverError(Int)
     case cannotResolve
+    case notAMusicLink
 
     var errorDescription: String? {
         switch self {
@@ -458,6 +505,7 @@ enum ServiceError: LocalizedError {
         case .invalidResponse: return "服务器响应异常"
         case .serverError(let code): return "服务器错误 (\(code))"
         case .cannotResolve: return "无法解析该音乐链接"
+        case .notAMusicLink: return "请分享具体的歌曲链接，不支持搜索/主页/艺人页面"
         }
     }
 }
