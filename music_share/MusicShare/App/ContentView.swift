@@ -1,4 +1,5 @@
 import SwiftUI
+import UIKit
 
 struct ContentView: View {
     @EnvironmentObject private var appState: AppState
@@ -106,10 +107,24 @@ struct ContentView: View {
     }
 
     private var emptyStateView: some View {
-        ContentUnavailableView {
-            Label("粘贴音乐链接", systemImage: "music.note.list")
-        } description: {
-            Text("支持 Spotify、Apple Music、QQ音乐、网易云音乐等多个平台的链接互转")
+        VStack(spacing: 24) {
+            ContentUnavailableView {
+                Label("粘贴音乐链接", systemImage: "music.note.list")
+            } description: {
+                Text("支持 Spotify、Apple Music、QQ音乐、网易云音乐等多个平台的链接互转")
+            }
+            #if DEBUG
+            Button {
+                triggerTestShareSheet()
+            } label: {
+                HStack(spacing: 6) {
+                    Image(systemName: "testtube.2")
+                    Text("测试分享")
+                }
+                .font(.caption)
+                .foregroundStyle(.secondary)
+            }
+            #endif
         }
         .frame(maxHeight: .infinity)
     }
@@ -161,6 +176,21 @@ struct ContentView: View {
         isFocused = false
         appState.handleIncomingURL(url)
     }
+
+    #if DEBUG
+    private func triggerTestShareSheet() {
+        let testURL = URL(string: "https://open.spotify.com/track/4cOdK2wGLETKBW3PvgPWqT")!
+        let activityVC = UIActivityViewController(activityItems: [testURL], applicationActivities: nil)
+        if let windowScene = UIApplication.shared.connectedScenes.first as? UIWindowScene,
+           let rootVC = windowScene.windows.first?.rootViewController {
+            var topVC = rootVC
+            while let presented = topVC.presentedViewController {
+                topVC = presented
+            }
+            topVC.present(activityVC, animated: true)
+        }
+    }
+    #endif
 }
 
 struct LinkRow: View {
